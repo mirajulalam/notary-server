@@ -15,10 +15,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
         await client.connect();
-        const taskCollection =client.db('notary').collection('task');
+        const taskCollection =client.db('notary').collection('mock');
 
       // user add task 
-      app.post("/task", async (req, res) => {
+      app.post("/mock", async (req, res) => {
         const task = req.body;
         const result = await taskCollection.insertOne(task)
         res.send(result);
@@ -33,7 +33,7 @@ async function run(){
       });
 
        // user update task
-       app.put('/task/:id', async (req, res) => {
+       app.put('/mock/:id', async (req, res) => {
         const id = req.params.id;
         const updateTask = req.body;
         const filter = { _id: ObjectId(id) }
